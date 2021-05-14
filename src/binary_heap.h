@@ -31,7 +31,7 @@
 #include <stddef.h>
 
 /*
- * Define a weak strict order between values.
+ * Define a weak strict order between values. Test code
  */
 typedef int (*bh_value_cmp)(const void *, const void *);
 
