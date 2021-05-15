@@ -1,4 +1,4 @@
-﻿# Overview of Codacy Analysis
+﻿# Codacy Analysis
 
 ![](./Screenshots/1.png)
 
@@ -192,4 +192,56 @@ sds sdsnewlen(const void *init, size_t initlen) {
 Variable sh is a sdshdr-type pointer and allocated spaces of size (size of struct sdshdr + initlen + 1). 1 is for null-terminated string. Outside of the scope of the function, pointer sh is not deallocated which causes memory leak.
 
 ## va_list, va_copy, va_end
+
+![](./Screenshots/6.png)
+
+### Basic Concepts
+- va_list
+
+This type is used as a parameter for the macros defined in cstdarg.h to retrieve the additional arguments of a function.
+
+va_start initializes an object of this type in such a way that subsequent calls to va_arg sequentially retrieve the additional arguments passed to the function.
+```
+void va_start (va_list ap, paramN);
+```
+
+Before a function that has initialized a va_list object with va_start returns, the va_end macro shall be invoked.
+```
+void va_end (va_list ap);
+```
+
+- va_copy
+```
+void va_copy (va_list dest, va_list src);
+```
+
+Initializes dest as a copy of src (in its current state).
+
+The next argument to be extracted from dest is the same as the one that would be extracted from src.
+
+A function that invokes va_copy, shall also invoke va_end on dest before it returns.
+
+### Practical Code(tools/serialization/hiredis/sds.c)
+
+In sdscatvprintf(sds s, const char *fmt, va_list ap) function va_list variable cpy is declared:
+```
+va_list cpy;
+```
+
+cpy is initialized by va_copy:
+```
+va_copy(cpy,ap);
+```
+
+According to va_copy invoke rules: A function that invokes va_copy, shall also invoke va_end on dest before it returns.
+
+At the end of the function:
+![](./Screenshots/6.png)
+
+
+# Manual Review
+
+
+
+
 
