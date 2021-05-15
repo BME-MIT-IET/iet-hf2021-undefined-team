@@ -8,7 +8,7 @@ There are 33 issues in total, 19 errors and 14 warnings respectively.
 
 ## Security Issues
 
-![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/3.PNG)
+![](./Screenshots/3.PNG)
 
 - Null-terminated(0-terminated)
 
