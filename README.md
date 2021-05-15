@@ -1,8 +1,8 @@
 ﻿# Codacy Analysis
 
-![](./Screenshots/1.png)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/1.PNG)
 
-![](./Screenshots/2.png)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/2.PNG)
 
 There are 33 issues in total, 19 errors and 14 warnings respectively.
 
