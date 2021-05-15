@@ -19,8 +19,8 @@ There are plenty of applications where this filter is being used such as Netflix
 
 Working in pairs and exchange of ideas!
 
-Ibrar and Asad Idrees -- Testing and Project Configuration
-Meng and Dong -- CI and Static Techniques
+- Ibrar and Asad Idrees -- Testing and Project Configuration
+- Meng and Dong -- CI and Static Techniques
 
 ## Assigned Tasks
 
