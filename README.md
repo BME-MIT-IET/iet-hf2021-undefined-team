@@ -160,3 +160,36 @@ In hiredis.h file
 #include <ws2tcpip.h>
 #endif
 ```
+
+## Memory Leak
+
+![](./Screenshots/5.png)
+
+Memory leakage occurs in C++ when programmers allocates memory by using new keyword and forgets to deallocate the memory by using delete() function or delete[] operator. 
+
+- Problematic Code(./tools/serialization/hiredis/sds.c)
+
+```
+sds sdsnewlen(const void *init, size_t initlen) {
+    struct sdshdr *sh;
+
+    sh = malloc(sizeof(struct sdshdr)+initlen+1);
+#ifdef SDS_ABORT_ON_OOM
+    if (sh == NULL) sdsOomAbort();
+#else
+    if (sh == NULL) return NULL;
+#endif
+    sh->len = initlen;
+    sh->free = 0;
+    if (initlen) {
+        if (init) memcpy(sh->buf, init, initlen);
+        else memset(sh->buf,0,initlen);
+    }
+    sh->buf[initlen] = '\0';
+    return (char*)sh->buf;
+}
+```
+Variable sh is a sdshdr-type pointer and allocated spaces of size (size of struct sdshdr + initlen + 1). 1 is for null-terminated string. Outside of the scope of the function, pointer sh is not deallocated which causes memory leak.
+
+## va_list, va_copy, va_end
+
