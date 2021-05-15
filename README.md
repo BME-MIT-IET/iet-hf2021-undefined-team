@@ -8,7 +8,7 @@ There are 33 issues in total, 19 errors and 14 warnings respectively.
 
 ## Security Issues
 
-![](./Screenshots/3.png)
+![](./Screenshots/3.PNG)
 
 - Null-terminated(0-terminated)
 
