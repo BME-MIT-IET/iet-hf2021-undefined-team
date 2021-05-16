@@ -8,10 +8,12 @@ There are plenty of applications where this filter is being used such as Netflix
 
 - Ibrar Shakoor 
 - Asad Idrees Razak 
-- Shize Dong
-- Meng 
+- SiZhe Dong
+- Meng YiFang
 
 ## Team Progress
+
+Set the Enviorment for static testing by SonarQube and get the analysis report from the checker to analys the quality of the code .
 
 .....
 
