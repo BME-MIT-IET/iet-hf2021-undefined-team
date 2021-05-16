@@ -12,8 +12,10 @@ There are plenty of applications where this filter is being used such as Netflix
 - Meng 
 
 ## Team Progress
+Successful Library Configuration 
+Make the Programe Runnable
+Dealing with xUnit testing tools/Test Coverage tools
 
-.....
 
 ## Goal / Idea
 
@@ -24,6 +26,13 @@ Working in pairs and exchange of ideas!
 
 ## Assigned Tasks
 
-Testing will include both Unit and Integration Testing.
+Unit Testing 
+Design and Document manual testing
+Usage of Static and CI Techniques 
+Usage of Sonar Cloud
+
+
+
+
 
 .....
