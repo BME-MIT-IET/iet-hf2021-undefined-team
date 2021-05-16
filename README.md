@@ -348,7 +348,7 @@ typedef struct model_parameters model_parameters_t;
 
 - Matrix Factorization
 
-![](./Screenshots/7.png)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/7.PNG)
 
 The dot product can be calculated by utils.c:
 ```
@@ -387,12 +387,61 @@ regularized_squared_error(
 }
 ```
 
+- Sparse Matrix
+
+In recommender systems, we typically work with very sparse matrices as the item universe is very large while a single user typically interacts with a very small subset of the item universe.
 
 
+This means that when we represent the users (as rows) and items (as columns) in a matrix, the result is an extremely sparse matrix consisting of many zero values.
 
+```
+/* Sparse matrix structure (yale format) */
+typedef struct sparse_matrix
+{
+	size_t			column_nb;
 
+	size_t			row_nb;
 
+	size_t			nonzero_entries_nb; /* NNZ */
 
+	float*			values;             /* A */
 
+	size_t*			row_index;          /* IA */
 
+	size_t*			column_index;       /* JA */
 
+	size_t			row_capacity;
+
+	size_t			nonzero_entries_capacity;
+
+} sparse_matrix_t;
+```
+
+Sparse matrix hash:
+
+A sparse matrix is stored in a hash table, which allows an efficient method to search for an element:
+```
+for (k = 0; k < pfamily->projection_nb; k++)
+	{
+		double dot_product_r = 0;
+
+		if (r1 >= 0)
+			for (i = r1; i < r2; i++)
+			{
+				int cindex = matrix->column_index[i];
+				dot_product_r += pfamily->projections[k]->vector[cindex] * matrix->values[i];
+			}
+
+		bwidth = pfamily->projections[k]->bin_width;
+		bias = pfamily->projections[k]->bias;
+
+		proj_value = (int) floor((dot_product_r + bias) / (double) bwidth);
+		hash = 33 * hash + proj_value;
+	}		
+
+	return hash;
+  ```
+
+  - Why we choose hash table to store sparse matrix
+
+  In case that we plan to access just non-empty elements of matrix in specific order, then a hash table is a terrible choice. However, in recommendation system, the order of access to matrix is completely random(factors are computed several times).
