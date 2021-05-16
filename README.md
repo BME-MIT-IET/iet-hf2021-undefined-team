@@ -8,7 +8,7 @@ There are 33 issues in total, 19 errors and 14 warnings respectively.
 
 ## Security Issues
 
-![](./Screenshots/3.PNG)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/3.PNG)
 
 - Null-terminated(0-terminated)
 
@@ -86,7 +86,7 @@ void lessen_memory_usage(void) {
 
 ## Include Nested Too Deeply
 
-![](./Screenshots/4.png)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/4.PNG)
 
 - Reasons
 
@@ -163,7 +163,7 @@ In hiredis.h file
 
 ## Memory Leak
 
-![](./Screenshots/5.png)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/5.PNG)
 
 Memory leakage occurs in C++ when programmers allocates memory by using new keyword and forgets to deallocate the memory by using delete() function or delete[] operator. 
 
@@ -193,7 +193,7 @@ Variable sh is a sdshdr-type pointer and allocated spaces of size (size of struc
 
 ## va_list, va_copy, va_end
 
-![](./Screenshots/6.png)
+![](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/YifangMeng/Screenshots/6.PNG)
 
 ### Basic Concepts
 - va_list
@@ -240,6 +240,82 @@ At the end of the function:
 
 
 # Manual Review
+
+## HIREDIS
+
+Hiredis is a minimalistic C client library for the Redis database.
+
+It is minimalistic because it just adds minimal support for the protocol, but at the same time it uses an high level printf-alike API in order to make it much higher level than otherwise suggested by its minimal code base and the lack of explicit bindings for every Redis command.
+
+Apart from supporting sending commands and receiving replies, it comes with a reply parser that is decoupled from the I/O layer. It is a stream parser designed for easy reusability, which can for instance be used in higher level language bindings for efficient reply parsing.
+
+### Usage
+
+The following code creates a connection to Redis using the hiredis synchronous API:
+```
+#include "hiredis.h"
+
+redisContext *c = redisConnect("hostname", port);
+if (c != NULL && c->err) {
+    printf("Error: %s\n", c->errstr);
+    // handle error
+} else {
+    printf("Connected to Redis\n");
+}
+
+redisReply *reply;
+reply = redisCommand(c, "AUTH password");
+freeReplyObject(reply);
+
+...
+
+redisFree(c);
+```
+
+To adapt this example to your code, make sure that you replace the following values with those of your database:
+
+1. In line 1, the first argument to redisConnect should be your database’s hostname or IP address
+
+2. In line 1, the second argument to redisConnect should be your database’s port
+
+3. In line 6, replace “password” with your database’s password
+
+### Sending Commands using redisCommand
+
+```
+reply = redisCommand(context, "SET foo bar");
+```
+The specifier %s interpolates a string in the command, and uses strlen to determine the length of the string:
+```
+reply = redisCommand(context, "SET foo %s", value);
+```
+When you need to pass binary safe strings in a command, the %b specifier can be used. Together with a pointer to the string, it requires a size_t length argument of the string:
+```
+reply = redisCommand(context, "SET foo %b", value, valuelen);
+```
+Internally, Hiredis splits the command in different arguments and will convert it to the protocol used to communicate with Redis. One or more spaces separates arguments, so you can use the specifiers anywhere in an argument:
+```
+reply = redisCommand(context, "SET key:%s %s", myid, value);
+```
+### Using reply
+
+The return value of redisCommand holds a reply when the command was successfully executed. When an error occurs, the return value is NULL and the err field in the context will be set (see section on Errors). 
+
+The standard replies that redisCommand are of the type redisReply. The type field in the redisReply should be used to test what kind of reply was received:
+
+- `REDIS_REPLY_STATUS`
+
+The command replied with a status reply. The status string can be accessed using reply->str. The length of this string can be accessed using reply->len.
+
+- `REDIS_REPLY_ERROR`
+
+The command replied with an error. The error string can be accessed identical to REDIS_REPLY_STATUS.
+
+## 
+
+
+
+
 
 
 
