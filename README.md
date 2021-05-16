@@ -311,7 +311,82 @@ The command replied with a status reply. The status string can be accessed using
 
 The command replied with an error. The error string can be accessed identical to REDIS_REPLY_STATUS.
 
-## 
+## Recommender System
+
+In this section, we will go through basic concepts of recommender system and Collaborative Filtering first, then demonstrate how they are implemented in the project.
+
+Collaborative methods for recommender systems are methods that are based solely on the past interactions recorded between users and items in order to produce new recommendations. These interactions are stored in the so-called “user-item interactions matrix”.
+
+Model based approaches assume an underlying “generative” model that explains the user-item interactions and try to discover it in order to make new predictions.
+```
+struct model_parameters
+{
+	size_t			users_number;
+	size_t			items_number;
+
+	size_t			dimensionality; /* dimensionality of the joint latent factor space */
+	size_t			iteration_number;
+
+	size_t			training_set_size;  /* The number of known ratings */
+
+	float			lambda;          /* The constant lambda controls the extent of regularization */
+	float			step;            /* step size in stochastic gradient descent algorithm */
+
+	float			step_bias;
+	float			lambda_bias;
+
+	int				algoithm_type;
+
+	int 			seed;
+	int 			bin_width;
+	int 			proj_family_size;
+	float			betha;
+};
+
+typedef struct model_parameters model_parameters_t;
+```
+
+- Matrix Factorization
+
+![](./Screenshots/7.png)
+
+The dot product can be calculated by utils.c:
+```
+/*
+ * Calculate the dot product
+ */
+double
+dot_product(double* vect1, double* vect2, size_t dim)
+{
+	double sum = 0;
+	size_t i;
+
+	for (i = 0; i < dim; i++)
+		sum += vect1[i] * vect2[i];
+	
+	return sum;
+}
+```
+Reconstruct errors: 
+
+regularized_squared_error:  Return the the regularized squared error on the set of known ratings:
+```
+double
+regularized_squared_error(
+			  double* user_vector,
+			  double* item_vector,
+			  double r,
+			  double lambda,
+			  size_t size)
+{
+	double diff = 
+		(r - estimate_item_rating(user_vector, item_vector, size));
+
+	return  diff * diff + 
+		lambda * (length2(user_vector, size) + length2(item_vector, size));
+}
+```
+
 
 
 
