@@ -1,36 +1,35 @@
-#Static Analysis by SonarQube
+# Static Analysis by SonarQube
 
 *For Static analysis , I choose SonarQube , even it doesn't support for C/C++ officially ,But there are cppcheck on github which is open sourced.*
-##Installation
-###Install SonarQube
-####1.Download Sonarqube:
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/1.PNG)
+## Installation
+#### 1.Download Sonarqube:
+![1](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/1.PNG)
 Unzip it.
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/2.PNG)
+![2](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/2.PNG)
 Add the bin to the system path.
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/3.PNG)
+![3](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/3.PNG)
 Choose the specific system .
 
-####2.Run the Sonarqube server:
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/4.PNG)
+#### 2.Run the Sonarqube server:
+![4](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/4.PNG)
 Run the StartNTService
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/5.PNG)
+![5](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/5.PNG)
 Change the properties in conf folder, then StartSonar (use the Admin).
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/6.PNG)
+![6](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/6.PNG)
 If the SonarQube is up , then your setting correctly.
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/7.PNG)
+![7](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/7.PNG)
 Open localhost:9000 (Defalut port),then you can see the UI of the sonarqube.
 
 
-####3.Add the sonarscanner and cppchecker
+#### 3.Add the sonarscanner and cppchecker
 Download the sonarscanner and add the bin into system path as last step.
 Download the cxx-plugin to the sonarqube
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/8.PNG)
+![8](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/8.PNG)
 xx\sonarqube-8.9.0.43852\sonarqube-8.9.0.43852\extensions\plugins
 
 After that , restart sonarqube.
@@ -44,7 +43,15 @@ And add the rules of the cppchecker.
 
 After succesfull setting , we can use the sonarscanner with open source cppchecker
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/9.PNG)
+![9](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/9.PNG)
+## Run the test 
 Run the scanner under the project you want to check , after success execution , go back to server , you can see the result of the scan.
 
-![Folder](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/10.PNG)
+![10](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/10.PNG)
+
+***
+## Get the result
+We cam see that there are no bugs and vulnerabilities . but still , it didn't pass the **Quality Gates** ,  the main reason is the maintainability is less than A , also the Duplicates lines are too much , also in the report , we can see many **Code Smells** 
+![11](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/11.PNG)
+![12](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/12.PNG)
+![13](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/13.PNG)
