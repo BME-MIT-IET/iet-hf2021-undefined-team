@@ -16,6 +16,8 @@ There are plenty of applications where this filter is being used such as Netflix
 
 - Set the Enviorment for static testing by SonarQube 
 - Get the analysis report from the cppchecker to analysis the quality of the code .
+- Static Analysis using Codacy
+- Manual Review on Collaborative Filtering and Matrix Factorization
 
 
 - Successful Library Configuration 
@@ -37,4 +39,5 @@ Working in pairs and exchange of ideas!
 - Design and Document manual testing
 - Usage of Static and CI Techniques 
 - Usage of SonarCloud
-.....
+- Usage of Codacy
+- Understand Collaborative Filtering
