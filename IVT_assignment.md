@@ -12,9 +12,10 @@ There are plenty of applications where this filter is being used such as Netflix
 - Meng 
 
 ## Team Progress
-Successful Library Configuration 
-Make the Programe Runnable
-Dealing with xUnit testing tools/Test Coverage tools
+
+- Successful Library Configuration 
+- Made the Programe Runnable
+- Dealing with xUnit testing tools/Test and Coverage tools
 
 
 ## Goal / Idea
@@ -26,13 +27,8 @@ Working in pairs and exchange of ideas!
 
 ## Assigned Tasks
 
-Unit Testing 
-Design and Document manual testing
-Usage of Static and CI Techniques 
-Usage of Sonar Cloud
-
-
-
-
-
+- Unit Testing 
+- Design and Document manual testing
+- Usage of Static and CI Techniques 
+- Usage of SonarCloud
 .....
