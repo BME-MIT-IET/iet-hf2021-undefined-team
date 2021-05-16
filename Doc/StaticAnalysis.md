@@ -1,8 +1,7 @@
-#Static Analysis by SonarQube
+# Static Analysis by SonarQube
 
 *For Static analysis , I choose SonarQube , even it doesn't support for C/C++ officially ,But there are cppcheck on github which is open sourced.*
 ## Installation
-### Install SonarQube
 #### 1.Download Sonarqube:
 ![1](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/1.PNG)
 Unzip it.
@@ -45,7 +44,14 @@ And add the rules of the cppchecker.
 After succesfull setting , we can use the sonarscanner with open source cppchecker
 
 ![9](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/9.PNG)
-#### 4.Run the test 
+## Run the test 
 Run the scanner under the project you want to check , after success execution , go back to server , you can see the result of the scan.
 
 ![10](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/10.PNG)
+
+***
+## Get the result
+We cam see that there are no bugs and vulnerabilities . but still , it didn't pass the **Quality Gates** ,  the main reason is the maintainability is less than A , also the Duplicates lines are too much , also in the report , we can see many **Code Smells** 
+![11](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/11.PNG)
+![12](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/12.PNG)
+![13](https://github.com/BME-MIT-IET/iet-hf2021-undefined-team/blob/main/IMG/13.PNG)
